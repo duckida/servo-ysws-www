@@ -179,9 +179,7 @@ function Photo({
         style={{
           width: "100%",
           height: "100%",
-          transform: hovered
-            ? `translateX(${slideX}px) translateY(${slideY}px)`
-            : "none",
+          transform: hovered ? `translateX(${slideX}px) translateY(${slideY}px)` : "none",
           transition: "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
         }}
       >
@@ -332,11 +330,7 @@ export function HeroSection() {
     };
 
     const scheduleParallax = () => {
-      if (
-        prefersReducedMotionRef.current ||
-        !isHeroVisibleRef.current ||
-        rafRef.current !== null
-      )
+      if (prefersReducedMotionRef.current || !isHeroVisibleRef.current || rafRef.current !== null)
         return;
       rafRef.current = requestAnimationFrame(applyParallax);
     };
@@ -370,9 +364,7 @@ export function HeroSection() {
     };
 
     parallaxElementsRef.current = Array.from(
-      sectionRef.current?.querySelectorAll<HTMLElement>(
-        "[data-parallax-rate]",
-      ) ?? [],
+      sectionRef.current?.querySelectorAll<HTMLElement>("[data-parallax-rate]") ?? [],
     );
 
     measureHero();
@@ -414,8 +406,7 @@ export function HeroSection() {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        background:
-          "linear-gradient(180deg, rgba(11,32,224,0.04) 60%, rgba(11,32,224,0.40) 100%)",
+        background: "linear-gradient(180deg, rgba(11,32,224,0.04) 60%, rgba(11,32,224,0.40) 100%)",
       }}
     >
       {/*
@@ -450,8 +441,7 @@ export function HeroSection() {
             width: "100%",
             transform: "translate3d(-50%, 0, 0)",
             maskImage: "linear-gradient(to top, black 40%, transparent 75%)",
-            WebkitMaskImage:
-              "linear-gradient(to top, black 40%, transparent 75%)",
+            WebkitMaskImage: "linear-gradient(to top, black 40%, transparent 75%)",
             willChange: "transform",
           }}
         >
@@ -573,8 +563,7 @@ export function HeroSection() {
             maxWidth: "min(600px, calc(100vw - 64px))",
           }}
         >
-          Build or design a robot, and we ship the parts and upgrades to keep it
-          going!
+          Build or design a robot, and we ship the parts and upgrades to keep it going!
         </p>
       </div>
 

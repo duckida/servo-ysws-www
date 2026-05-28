@@ -15,8 +15,7 @@ const links = [
 ];
 
 const F = "var(--font-phantom)";
-const ddId = (l: string) =>
-  `dropdown-${l.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+const ddId = (l: string) => `dropdown-${l.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 const ease = "cubic-bezier(0.23, 1, 0.32, 1)";
 
 type Item = { label: string; href: string };
@@ -122,9 +121,7 @@ function DropdownMenu({ items, menuId }: { items: Item[]; menuId: string }) {
 }
 
 export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
-  const [menuState, setMenuState] = useState<
-    "closed" | "opening" | "open" | "closing"
-  >("closed");
+  const [menuState, setMenuState] = useState<"closed" | "opening" | "open" | "closing">("closed");
   const [openDd, setOpenDd] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -272,8 +269,7 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
                   onMouseLeave={leave}
                   onFocus={() => enter(label)}
                   onBlur={(e) => {
-                    if (!e.currentTarget.contains(e.relatedTarget as Node))
-                      leave();
+                    if (!e.currentTarget.contains(e.relatedTarget as Node)) leave();
                   }}
                 >
                   <button
@@ -313,9 +309,7 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
                       />
                     </svg>
                   </button>
-                  {openDd === label && (
-                    <DropdownMenu items={dropdown} menuId={id} />
-                  )}
+                  {openDd === label && <DropdownMenu items={dropdown} menuId={id} />}
                 </div>
               );
             }
@@ -401,11 +395,7 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
       </nav>
 
       {!invertColors && (
-        <div
-          className="lg:hidden"
-          style={{ height: 80, flexShrink: 0 }}
-          aria-hidden="true"
-        />
+        <div className="lg:hidden" style={{ height: 80, flexShrink: 0 }} aria-hidden="true" />
       )}
 
       {mounted && (
@@ -490,10 +480,7 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
             >
               Join the community
             </a>
-            <div
-              className="mobile-nav-item"
-              style={{ display: "flex", justifyContent: "center" }}
-            >
+            <div className="mobile-nav-item" style={{ display: "flex", justifyContent: "center" }}>
               <ThemeToggle />
             </div>
           </div>
@@ -512,9 +499,7 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
             background: ${scrolled ? "var(--nav-bg)" : "transparent"};
             backdrop-filter: ${scrolled ? "blur(16px)" : "none"};
             -webkit-backdrop-filter: ${scrolled ? "blur(16px)" : "none"};
-            border-bottom: ${scrolled
-              ? "1px solid var(--border)"
-              : "1px solid transparent"};
+            border-bottom: ${scrolled ? "1px solid var(--border)" : "1px solid transparent"};
           }
         }
         .mobile-nav-overlay {

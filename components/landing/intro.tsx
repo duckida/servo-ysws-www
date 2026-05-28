@@ -73,8 +73,8 @@ export async function IntroSection() {
             margin: 0,
           }}
         >
-          100,000 teens started exactly where you are. We&rsquo;re here to help
-          you build your first crazy thing.
+          100,000 teens started exactly where you are. We&rsquo;re here to help you build your first
+          crazy thing.
         </p>
       </div>
 
