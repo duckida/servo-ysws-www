@@ -15,7 +15,8 @@ const links = [
 ];
 
 const F = "var(--font-phantom)";
-const ddId = (l: string) => `dropdown-${l.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+const ddId = (l: string) =>
+  `dropdown-${l.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 const ease = "cubic-bezier(0.23, 1, 0.32, 1)";
 
 type Item = { label: string; href: string };
@@ -121,7 +122,9 @@ function DropdownMenu({ items, menuId }: { items: Item[]; menuId: string }) {
 }
 
 export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
-  const [menuState, setMenuState] = useState<"closed" | "opening" | "open" | "closing">("closed");
+  const [menuState, setMenuState] = useState<
+    "closed" | "opening" | "open" | "closing"
+  >("closed");
   const [openDd, setOpenDd] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -257,62 +260,8 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
         </Link>
 
         <div className="hidden lg:flex items-center" style={{ gap: 24 }}>
-          {links.map(({ label, href, dropdown }) => {
+          {links.map(({ label, href }) => {
             const a = active(href);
-            if (dropdown) {
-              const id = ddId(label);
-              return (
-                <div
-                  key={label}
-                  style={{ position: "relative" }}
-                  onMouseEnter={() => enter(label)}
-                  onMouseLeave={leave}
-                  onFocus={() => enter(label)}
-                  onBlur={(e) => {
-                    if (!e.currentTarget.contains(e.relatedTarget as Node)) leave();
-                  }}
-                >
-                  <button
-                    type="button"
-                    className="nav-link"
-                    aria-haspopup="menu"
-                    aria-expanded={openDd === label}
-                    aria-controls={id}
-                    style={{
-                      ...ls(a),
-                      background: "none",
-                      border: "none",
-                      padding: 0,
-                      cursor: "pointer",
-                      opacity: openDd === label ? 0.6 : 1,
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 6,
-                    }}
-                  >
-                    {label}
-                    <svg
-                      className="nav-arrow"
-                      width="12"
-                      height="8"
-                      viewBox="0 0 12 8"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        d="M1 1.5L6 6.5L11 1.5"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
-                  {openDd === label && <DropdownMenu items={dropdown} menuId={id} />}
-                </div>
-              );
-            }
             return (
               <NL
                 key={label}
@@ -395,7 +344,11 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
       </nav>
 
       {!invertColors && (
-        <div className="lg:hidden" style={{ height: 80, flexShrink: 0 }} aria-hidden="true" />
+        <div
+          className="lg:hidden"
+          style={{ height: 80, flexShrink: 0 }}
+          aria-hidden="true"
+        />
       )}
 
       {mounted && (
@@ -480,7 +433,10 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
             >
               Join the community
             </a>
-            <div className="mobile-nav-item" style={{ display: "flex", justifyContent: "center" }}>
+            <div
+              className="mobile-nav-item"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
               <ThemeToggle />
             </div>
           </div>
@@ -499,7 +455,9 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
             background: ${scrolled ? "var(--nav-bg)" : "transparent"};
             backdrop-filter: ${scrolled ? "blur(16px)" : "none"};
             -webkit-backdrop-filter: ${scrolled ? "blur(16px)" : "none"};
-            border-bottom: ${scrolled ? "1px solid var(--border)" : "1px solid transparent"};
+            border-bottom: ${scrolled
+              ? "1px solid var(--border)"
+              : "1px solid transparent"};
           }
         }
         .mobile-nav-overlay {

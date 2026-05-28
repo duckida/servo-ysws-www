@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
-export const SITE_NAME = "Hack Club";
-export const SITE_TITLE = "Hack Club — Where teens make cool stuff.";
+export const SITE_NAME = "Servo";
+export const SITE_TITLE = "Servo - the robotics YSWS";
 export const SITE_DESCRIPTION =
-  "Hack Club is the world's largest nonprofit movement of teenagers making cool projects.";
-export const SITE_URL = "https://hackclub.com";
+  "Build or design a robot, and we ship the parts and upgrades to keep it going!";
+export const SITE_URL = "https://servo-ysws.netlify.app";
 
 type PageMetadataInput = {
   title: string;

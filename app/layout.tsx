@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import PlausibleProvider from "next-plausible";
 import "./globals.css";
 import { SkipToMainLink } from "../components/SkipToMainLink";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/seo";
 import { phantomSans, zarathustra } from "./fonts";
+// 1. Import Next.js Script component
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hackclub.com"),
+  metadataBase: new URL("https://servo-ysws.netlify.app"),
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
 };
@@ -18,10 +19,10 @@ const themesrc = `(function(){try{var s=localStorage.getItem('hc-site-theme'),t=
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Hack Club",
-  url: "https://hackclub.com",
-  logo: "https://assets.hackclub.com/flag-standalone.png",
-  sameAs: [
+  "name": "Hack Club",
+  "url": "https://hackclub.com",
+  "logo": "https://assets.hackclub.com/flag-standalone.png",
+  "sameAs": [
     "https://twitter.com/hackclub",
     "https://github.com/hackclub",
     "https://www.youtube.com/c/HackClubHQ",
@@ -53,12 +54,17 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full">
-        <PlausibleProvider src="https://plausible.io/js/pa-Fxh-6GHJlpUS4AXISXi-C.js">
-          <SkipToMainLink />
-          {children}
-          <Analytics />
-          <SpeedInsights />
-        </PlausibleProvider>
+        {/* 2. Render children first so your page content renders instantly */}
+        {children}
+
+        {/* 3. Simple Analytics using the Next.js Script wrapper */}
+        <Script
+          src="https://scripts.simpleanalyticscdn.com/latest.js"
+          strategy="afterInteractive"
+        />
+
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
