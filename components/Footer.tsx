@@ -20,7 +20,11 @@ const sectionHeadingStyles = {
   marginBottom: 16,
   lineHeight: 1.2,
 } as const;
-const u = { color: "var(--paper)", textDecoration: "underline", textUnderlineOffset: 2 } as const;
+const u = {
+  color: "var(--paper)",
+  textDecoration: "underline",
+  textUnderlineOffset: 2,
+} as const;
 
 const hcLinks = [
   { label: "Philosophy", href: "/philosophy" },
@@ -45,8 +49,16 @@ const resLinks = [
 
 const icons = [
   { label: "GitHub", href: "https://github.com/hackclub", glyph: "github" },
-  { label: "YouTube", href: "https://www.youtube.com/c/HackClubHQ", glyph: "youtube" },
-  { label: "Instagram", href: "https://www.instagram.com/starthackclub", glyph: "instagram" },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/c/HackClubHQ",
+    glyph: "youtube",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/starthackclub",
+    glyph: "instagram",
+  },
   { label: "Email", href: "mailto:team@hackclub.com", glyph: "email" },
 ];
 
@@ -56,7 +68,13 @@ function isExternal(href: string) {
   return href.startsWith("http");
 }
 
-function LinkCol({ title, links }: { title: string; links: { label: string; href: string }[] }) {
+function LinkCol({
+  title,
+  links,
+}: {
+  title: string;
+  links: { label: string; href: string }[];
+}) {
   return (
     <div style={title === "Resources" ? { minWidth: 140 } : undefined}>
       <p style={sectionHeadingStyles}>{title}</p>
@@ -83,7 +101,11 @@ function LinkCol({ title, links }: { title: string; links: { label: string; href
                 {l.label}
               </a>
             ) : (
-              <Link href={l.href} className="footer-link" style={footerLinkStyles}>
+              <Link
+                href={l.href}
+                className="footer-link"
+                style={footerLinkStyles}
+              >
                 {l.label}
               </Link>
             )}
@@ -144,7 +166,13 @@ export function Footer() {
         }}
       >
         <div
-          style={{ display: "flex", flexDirection: "column", gap: 0, flexShrink: 0, width: 280 }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 0,
+            flexShrink: 0,
+            width: 280,
+          }}
         >
           <div style={{ marginBottom: 28 }}>
             <Link href="/">
@@ -167,24 +195,8 @@ export function Footer() {
               lineHeight: 1.2,
             }}
           >
-            For teens, by teens.
+            Servo is a Hack Club program, organized by teens for teens &#128150;
           </p>
-          <a
-            href="tel:18556254225"
-            aria-label="Call Hack Club toll-free at 1-855-625-4225"
-            style={{
-              fontWeight: 400,
-              fontSize: 20,
-              color: "var(--paper)",
-              margin: 0,
-              marginBottom: 32,
-              lineHeight: 1.2,
-              textDecoration: "none",
-              display: "inline-block",
-            }}
-          >
-            1-855-625-HACK (call toll-free)
-          </a>
           <div style={{ display: "flex", gap: 12 }}>
             {icons.map((i) => (
               <a

@@ -38,29 +38,12 @@ export function ReadySection() {
             margin: "0 0 24px",
           }}
         >
-          Ready?
+          Ready to build?
         </h2>
 
-        {/* Email pill */}
-        <EmailSignupInput variant="ready" />
-
-        {/* "Get started" body copy */}
-        <p
-          style={{
-            fontFamily: "var(--font-phantom)",
-            fontWeight: 400,
-            fontSize: 20,
-            color: "var(--foreground)",
-            margin: "48px 0 0",
-            lineHeight: 1.2,
-          }}
-        >
-          Get started with building something real.
-        </p>
-
-        {/* "Explore current programs" button */}
+        {/* "RSVP Now!" button */}
         <Link
-          href="/programs"
+          href="https://rsvp.hackclub.community/servo"
           className="cta-btn dark-btn"
           style={{
             display: "inline-flex",
@@ -81,7 +64,7 @@ export function ReadySection() {
             marginTop: 16,
           }}
         >
-          Explore current programs <BtnArrow />
+          RSVP Now! <BtnArrow />
         </Link>
 
         {/* Italic subtitle */}
@@ -102,7 +85,7 @@ export function ReadySection() {
             href="/privacy-and-terms"
             className="ready-terms-link"
             style={{
-              color: "var(--red)",
+              color: "var(--blue)",
               textDecoration: "underline",
               textUnderlineOffset: 2,
               pointerEvents: "auto",

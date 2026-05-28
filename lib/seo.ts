@@ -18,7 +18,7 @@ export function buildPageMetadata({
   title,
   description,
   canonical,
-  image = "https://cdn.hackclub.com/019db4df-dc7a-7270-94b5-df621a60c7ca/splash.png",
+  image = "https://servo-ysws.vercel.app/assets/welcometoservo.png",
   imageAlt = SITE_NAME,
 }: PageMetadataInput): Metadata {
   return {

@@ -13,8 +13,6 @@ export async function IntroSection() {
         paddingBottom: 100,
       }}
     >
-      {/* Creature overlay — 3.5 waves wide, front of everything including hero wave and images */}
-
       {/* Headline */}
       <div
         className="section-padded"
@@ -73,28 +71,23 @@ export async function IntroSection() {
             margin: 0,
           }}
         >
-          100,000 teens started exactly where you are. We&rsquo;re here to help you build your first
-          crazy thing.
+          Build or design a robot (Raspberry Pi, ESP32, you name it), and we
+          ship the parts and upgrades to keep it going!
+        </p>
+        <br></br>
+        <p
+          style={{
+            fontFamily: "var(--font-phantom)",
+            fontSize: 20,
+            color: "var(--foreground)",
+            lineHeight: 1.2,
+            margin: 0,
+          }}
+        >
+          Never built a robot? Don&rsquo;t worry - there&rsquo;ll be a starter
+          kit for beginners, think Blueprint Hackpad but for robotics
         </p>
       </div>
-
-      {/* Creature2 — left side, centered on wave */}
-      <Image
-        src="/assets/creature2.webp"
-        alt=""
-        width={560}
-        height={620}
-        style={{
-          position: "absolute",
-          left: 0,
-          bottom: -18,
-          width: "calc(560 / 1920 * 100vw)",
-          height: "auto",
-          transform: "translateY(calc(85%))",
-          zIndex: 15,
-          pointerEvents: "none",
-        }}
-      />
 
       {/* Downward wave — matches HeroSection wave height/amplitude */}
       <div
