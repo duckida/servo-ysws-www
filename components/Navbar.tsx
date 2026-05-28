@@ -15,11 +15,7 @@ const links = [
 ];
 
 const F = "var(--font-phantom)";
-const ddId = (l: string) =>
-  `dropdown-${l.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 const ease = "cubic-bezier(0.23, 1, 0.32, 1)";
-
-type Item = { label: string; href: string };
 
 function NL({
   href,
@@ -37,97 +33,11 @@ function NL({
   );
 }
 
-function DropdownMenu({ items, menuId }: { items: Item[]; menuId: string }) {
-  return (
-    <>
-      <div
-        className="dropdown-menu"
-        id={menuId}
-        role="menu"
-        style={
-          {
-            position: "absolute",
-            top: "calc(100% + 8px)",
-            left: "50%",
-            background: "var(--dd-bg)",
-            borderRadius: 12,
-            boxShadow: "var(--dd-shadow)",
-            padding: "8px",
-            minWidth: 220,
-            zIndex: 100,
-            pointerEvents: "auto",
-            ["--dd-bg" as string]: "var(--surface)",
-            ["--dd-shadow" as string]: "var(--shadow-dd)",
-            ["--dd-link" as string]: "var(--foreground)",
-            ["--dd-hover" as string]: "var(--surface-hover)",
-          } as React.CSSProperties
-        }
-      >
-        {items.map((i) => (
-          <NL key={i.label} href={i.href} role="menuitem" className="dd-link">
-            {i.label}
-          </NL>
-        ))}
-      </div>
-      <style jsx>{`
-        .dropdown-menu {
-          transform: translate3d(-50%, 0, 0);
-          opacity: 1;
-          animation: ddIn 180ms ${ease};
-          will-change: transform, opacity;
-        }
-        :global(.dd-link) {
-          display: block;
-          padding: 10px 20px;
-          font-family: ${F};
-          font-size: 18px;
-          color: var(--dd-link);
-          text-decoration: none;
-          white-space: nowrap;
-          border-radius: 8px;
-          background-color: transparent;
-          transition:
-            background-color 200ms ease,
-            color 200ms ease,
-            padding-left 200ms ease,
-            box-shadow 200ms ease;
-        }
-        :global(.dd-link:hover) {
-          background-color: var(--dd-hover);
-          color: #0b20e0;
-          padding-left: 26px;
-          box-shadow: 0 4px 12px rgba(236, 55, 80, 0.12);
-        }
-        @keyframes ddIn {
-          from {
-            opacity: 0;
-            transform: translate3d(-50%, 6px, 0);
-          }
-          to {
-            opacity: 1;
-            transform: translate3d(-50%, 0, 0);
-          }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .dropdown-menu {
-            animation: none;
-          }
-          :global(.dd-link) {
-            transition: none;
-          }
-        }
-      `}</style>
-    </>
-  );
-}
-
 export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
   const [menuState, setMenuState] = useState<
     "closed" | "opening" | "open" | "closing"
   >("closed");
-  const [openDd, setOpenDd] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const openFrame = useRef<number | null>(null);
   const path = usePathname();
@@ -141,19 +51,11 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
 
   const inv = invertColors && !scrolled;
   const txt = inv ? "var(--cream)" : "var(--foreground)";
-  const muted = inv ? "rgba(255, 246, 235, 0.7)" : "var(--muted)";
-  const btnTxt = inv ? "var(--ink)" : "var(--background)"; // tomorrow x together?
+  const btnTxt = inv ? "var(--ink)" : "var(--background)";
   const btnHover = "var(--blue)";
   const mobBg = inv ? "rgba(23, 23, 29, 0.96)" : "var(--nav-bg)";
   const mobBorder = `1px solid ${inv ? "rgba(255, 255, 255, 0.08)" : "var(--border)"}`;
 
-  const enter = (l: string) => {
-    if (timer.current) clearTimeout(timer.current);
-    setOpenDd(l);
-  };
-  const leave = () => {
-    timer.current = setTimeout(() => setOpenDd(null), 120);
-  };
   const active = (h?: string) => (h ? h !== "#" && path.startsWith(h) : false);
   const mounted = menuState !== "closed";
   const isOpen = menuState === "opening" || menuState === "open";
@@ -199,13 +101,7 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
     };
   }, [closeMenu, mounted]);
 
-  useEffect(
-    () => () => {
-      if (timer.current) clearTimeout(timer.current);
-      clearHandles();
-    },
-    [clearHandles],
-  );
+  useEffect(() => () => clearHandles(), [clearHandles]);
 
   const ls = (a: boolean) => ({
     fontFamily: F,
@@ -217,6 +113,7 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
     opacity: 1,
     transition: "opacity 0.15s",
   });
+
   const hIn = (e: React.MouseEvent) => {
     (e.currentTarget as HTMLElement).style.opacity = "0.6";
   };
@@ -265,7 +162,7 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
             return (
               <NL
                 key={label}
-                href={href!}
+                href={href}
                 className="nav-link"
                 style={ls(a)}
                 onMouseEnter={hIn}
@@ -297,7 +194,7 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
               flexShrink: 0,
             }}
           >
-            RSVP Now!
+            <span style={{ color: "inherit" }}>RSVP Now!</span>
           </a>
         </div>
 
@@ -348,7 +245,7 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
           className="lg:hidden"
           style={{ height: 80, flexShrink: 0 }}
           aria-hidden="true"
-        />
+        ></div>
       )}
 
       {mounted && (
@@ -365,7 +262,7 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
           }
         >
           <div className="mobile-nav-panel">
-            {links.map(({ label, href, dropdown }) => {
+            {links.map(({ label, href }) => {
               const a = active(href);
               const s = {
                 fontFamily: F,
@@ -376,41 +273,9 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
               };
               return (
                 <div key={label} className="mobile-nav-item">
-                  {href ? (
-                    <NL href={href} style={s} onClick={closeMenu}>
-                      {label}
-                    </NL>
-                  ) : (
-                    <span style={s}>{label}</span>
-                  )}
-                  {dropdown && (
-                    <div
-                      style={{
-                        paddingLeft: 16,
-                        marginTop: 6,
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 8,
-                      }}
-                    >
-                      {dropdown.map((d) => (
-                        <NL
-                          key={d.label}
-                          href={d.href}
-                          onClick={closeMenu}
-                          style={{
-                            fontFamily: F,
-                            fontSize: 17,
-                            color: muted,
-                            textDecoration: "none",
-                            opacity: 0.9,
-                          }}
-                        >
-                          {d.label}
-                        </NL>
-                      ))}
-                    </div>
-                  )}
+                  <NL href={href} style={s} onClick={closeMenu}>
+                    {label}
+                  </NL>
                 </div>
               );
             })}
@@ -529,19 +394,6 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
         .mobile-nav-overlay[data-state="open"] .mobile-nav-item:nth-child(4) {
           transition-delay: 115ms;
         }
-        .mobile-nav-overlay[data-state="open"] .mobile-nav-item:nth-child(5) {
-          transition-delay: 140ms;
-        }
-        .nav-arrow {
-          transition:
-            transform 160ms ease,
-            opacity 160ms ease;
-          opacity: 0.8;
-        }
-        .nav-link:hover .nav-arrow {
-          opacity: 1;
-          transform: translateY(1px);
-        }
         .nav-cta {
           color: ${btnTxt};
           background: ${txt};
@@ -557,7 +409,6 @@ export function Navbar({ invertColors = false }: { invertColors?: boolean }) {
           transform: translateY(0) scale(0.98);
         }
         @media (prefers-reduced-motion: reduce) {
-          .nav-arrow,
           .nav-cta,
           .mobile-nav-overlay,
           .mobile-nav-panel,
