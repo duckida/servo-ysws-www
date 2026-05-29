@@ -171,6 +171,12 @@ export async function IntroSection() {
         }}
       >
         <ModuleCard
+          title={"Starter Kit"}
+          description={
+            "Never built a robot? Get a starter kit and bring it to life!"
+          }
+        />
+        <ModuleCard
           title={"AI"}
           description={
             "Design and program AI features for your robot, get the parts to make it reality!"
