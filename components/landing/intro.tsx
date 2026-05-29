@@ -1,5 +1,61 @@
-import Image from "next/image";
-import { BtnArrow } from "./btn-arrow";
+function ModuleCard({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
+  return (
+    <div
+      style={{
+        flexShrink: 0,
+        width: 290,
+        borderRadius: 16,
+        overflow: "hidden",
+        background: "var(--surface)",
+        boxShadow: "0 2px 16px rgba(0,0,0,0.10)",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      {/* Card body */}
+      <div
+        style={{
+          padding: "16px 18px 18px",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          gap: 12,
+        }}
+      >
+        <p
+          style={{
+            fontFamily: "var(--font-phantom)",
+            fontSize: 20,
+            color: "var(--foreground)",
+            margin: 0,
+            lineHeight: 1.2,
+            flex: 1,
+          }}
+        >
+          <strong>{title}</strong>
+        </p>
+        <p
+          style={{
+            fontFamily: "var(--font-phantom)",
+            fontSize: 20,
+            color: "var(--foreground)",
+            margin: 0,
+            lineHeight: 1.2,
+            flex: 1,
+          }}
+        >
+          {description}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export async function IntroSection() {
   return (
@@ -85,8 +141,59 @@ export async function IntroSection() {
           }}
         >
           Never built a robot? Don&rsquo;t worry - there&rsquo;ll be a starter
-          kit for beginners, think Blueprint Hackpad but for robotics
+          kit for beginners, think Blueprint Hackpad but for robotics!
         </p>
+        <br></br>
+        <p
+          style={{
+            fontFamily: "var(--font-phantom)",
+            fontSize: 20,
+            color: "var(--foreground)",
+            lineHeight: 1.2,
+            margin: 0,
+          }}
+        >
+          Choose your own path or follow one of the modules below for bonus
+          points:
+        </p>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignItems: "stretch", // Ensures all cards in a row have equal height
+          gap: 24, // Adjust space between cards
+          padding: "0 24px", // Keeps padding on the sides for smaller viewport sizes
+          width: "100%",
+          boxSizing: "border-box",
+        }}
+      >
+        <ModuleCard
+          title={"AI"}
+          description={
+            "Design and program AI features for your robot, get the parts to make it reality!"
+          }
+        />
+        <ModuleCard
+          title={"Self-Driving Challenge"}
+          description={
+            "Engineer a module to help your robot navigate environments autonomously!"
+          }
+        />
+        <ModuleCard
+          title={"Home Automation"}
+          description={
+            "Build a robot that helps with home tasks, get the resources to upgrade it!"
+          }
+        />
+        <ModuleCard
+          title={"Micromouse"}
+          description={
+            "Build a maze-solving robot, and source the components to build it!"
+          }
+        />
       </div>
 
       {/* Downward wave — matches HeroSection wave height/amplitude */}

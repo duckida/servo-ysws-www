@@ -27,24 +27,24 @@ const u = {
 } as const;
 
 const hcLinks = [
-  { label: "Philosophy", href: "/philosophy" },
-  { label: "Our Team & Board", href: "/team" },
-  { label: "Jobs", href: "/jobs" },
-  { label: "Branding", href: "/brand" },
-  { label: "Press Inquiries", href: "/press" },
-  { label: "Donate", href: "/philanthropy" },
-  { label: "Imprint", href: "/imprint" },
+  { label: "Philosophy", href: "https://hackclub.com/philosophy" },
+  { label: "Our Team & Board", href: "https://hackclub.com/team" },
+  { label: "Jobs", href: "https://hackclub.com/jobs" },
+  { label: "Branding", href: "https://hackclub.com/brand" },
+  { label: "Press Inquiries", href: "https://hackclub.com/press" },
+  { label: "Donate", href: "https://hackclub.com/philanthropy" },
+  { label: "Imprint", href: "https://hackclub.com/imprint" },
 ];
 
 const resLinks = [
-  { label: "Programs", href: "/programs" },
+  { label: "Programs", href: "https://hackclub.com/programs" },
   { label: "Community Events", href: "https://events.hackclub.com/" },
   { label: "Toolbox", href: "https://toolbox.hackclub.com/" },
-  { label: "Clubs", href: "/clubs" },
-  { label: "HCB", href: "/fiscal-sponsorship" },
-  { label: "Code of Conduct", href: "/conduct" },
-  { label: "Safeguarding Policy", href: "/safeguarding" },
-  { label: "Privacy & Terms", href: "/privacy-and-terms" },
+  { label: "Clubs", href: "https://hackclub.com/clubs" },
+  { label: "HCB", href: "https://hackclub.com/fiscal-sponsorship" },
+  { label: "Code of Conduct", href: "https://hackclub.com/conduct" },
+  { label: "Safeguarding Policy", href: "https://hackclub.com/safeguarding" },
+  { label: "Privacy & Terms", href: "https://hackclub.com/privacy-and-terms" },
 ];
 
 const icons = [
