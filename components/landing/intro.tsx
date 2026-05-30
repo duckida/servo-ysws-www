@@ -152,11 +152,50 @@ export async function IntroSection() {
             lineHeight: 1.2,
             margin: 0,
           }}
-        >
-          Choose your own path or follow one of the modules below for bonus
-          points:
-        </p>
+        ></p>
       </div>
+
+      {/* Choose a module h2 */}
+      <div
+        className="section-padded"
+        style={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          padding: 40,
+          marginBottom: 8,
+        }}
+      >
+        <h2
+          style={{
+            fontFamily: "var(--font-zarathustra)",
+            fontSize: 40,
+            lineHeight: 1,
+            color: "var(--foreground)",
+            margin: 0,
+            fontWeight: "normal",
+          }}
+        >
+          Choose your own path or follow one of the
+          <span
+            style={{
+              background:
+                "linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              display: "inline",
+            }}
+          >
+            {" "}
+            modules{" "}
+          </span>
+          below:
+        </h2>
+      </div>
+
       <div
         style={{
           display: "flex",
@@ -178,9 +217,7 @@ export async function IntroSection() {
         />
         <ModuleCard
           title={"AI"}
-          description={
-            "Design and program AI features for your robot, get the parts to make it reality!"
-          }
+          description={"Design and program AI features for your robot!"}
         />
         <ModuleCard
           title={"Self-Driving Challenge"}
@@ -190,16 +227,62 @@ export async function IntroSection() {
         />
         <ModuleCard
           title={"Home Automation"}
+          description={"Build a robot that helps with home tasks"}
+        />
+        <ModuleCard
+          title={"Line Follower"}
           description={
-            "Build a robot that helps with home tasks, get the resources to upgrade it!"
+            "Get your robot to follow a line (and curves, and loops...)"
           }
         />
         <ModuleCard
           title={"Micromouse"}
-          description={
-            "Build a maze-solving robot, and source the components to build it!"
-          }
+          description={"Build a robot that can solve a maze!"}
         />
+        <ModuleCard
+          title={"and more..."}
+          description={"Suggest your ideas at #servo on Slack!"}
+        />
+      </div>
+
+      {/* Get the parts h2 */}
+      <div
+        className="section-padded"
+        style={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          padding: 40,
+          marginBottom: 8,
+        }}
+      >
+        <h2
+          style={{
+            fontFamily: "var(--font-zarathustra)",
+            fontSize: 40,
+            lineHeight: 1,
+            color: "var(--foreground)",
+            margin: 0,
+            fontWeight: "normal",
+          }}
+        >
+          ..and{" "}
+          <span
+            style={{
+              background:
+                "linear-gradient(90deg,rgba(0, 60, 255, 1) 0%, rgba(0, 212, 255, 1) 100%);",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              display: "inline",
+            }}
+          >
+            get the parts
+          </span>{" "}
+          (free) to make it a reality!
+        </h2>
       </div>
 
       {/* Downward wave — matches HeroSection wave height/amplitude */}
